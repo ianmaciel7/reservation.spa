@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 import axios, { AxiosError } from "axios";
-import { IUser } from "../auth/authProvider";
+import { IUser } from "../provider/authProvider";
 import useLocalStorage from "./useLocalStorage";
 
 const useApi = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import RequireAuth from "../../shared/auth/requireAuth";
+import RequireAuth from "../../shared/components/requireAuth";
 import HomePage from "./pages/homePage";
 
 function ManagementApp() {

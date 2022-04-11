@@ -1,5 +1,5 @@
 import React from "react";
-import RequireAuth from "../../shared/auth/requireAuth";
+import RequireAuth from "../../shared/components/requireAuth";
 
 function RequesterApp() {
   return (

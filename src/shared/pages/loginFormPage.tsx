@@ -7,7 +7,6 @@ import useLoginForm, { Error } from "../hooks/useLoginForm";
 function LoginFormPage() {
   const { loginRequest, form } = useLoginForm();
 
-  console.log(loginRequest.error);
   if (loginRequest.isLoading) return <div>Loading...</div>;
   return (
     <Container>

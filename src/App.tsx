@@ -3,10 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import AuthProvider from "./shared/auth/authProvider";
 import LoginFormPage from "./shared/pages/loginFormPage";
 import RequesterApp from "./apps/requesterApp/RequesterApp";
 import ManagementApp from "./apps/managementApp/ManagementApp";
+import AuthProvider from "./shared/provider/authProvider";
 
 function App() {
   const queryClient = new QueryClient();
