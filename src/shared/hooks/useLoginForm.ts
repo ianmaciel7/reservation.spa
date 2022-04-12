@@ -15,8 +15,7 @@ export interface Error {
 }
 
 const urlByRole = (user: IUser) => {
-  const { type } = user;
-  if (type.includes(ROLE.ADMIN)) {
+  if (user?.type.includes(ROLE.ADMIN)) {
     return "/management";
   }
   return "/requester";
@@ -44,6 +43,7 @@ export default () => {
       auth.signIn(value);
 
       if (auth != null) {
+        console.log(auth);
         const url = urlByRole(auth.user as IUser);
         navigate(url);
       }

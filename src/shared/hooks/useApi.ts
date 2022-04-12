@@ -4,17 +4,23 @@ import { IUser } from "../provider/authProvider";
 import useLocalStorage from "./useLocalStorage";
 
 const useApi = () => {
+  const authType = "Basic";
   const [auth, setAuth] = useLocalStorage<IUser>("auth", null);
   const api = axios.create({
     baseURL: "http://localhost:8080/api",
     headers: {
-      Authorization: auth?.hash,
       "Access-Control-Allow-Origin": "*",
     },
   });
 
   api.interceptors.request.use(
-    async (request) => Promise.resolve(request),
+    async (request) => {
+      const token = auth?.hash;
+      request.headers = {
+        Authorization: `${authType} ${token}`,
+      };
+      return Promise.resolve(request);
+    },
     (error) => Promise.reject(error)
   );
 

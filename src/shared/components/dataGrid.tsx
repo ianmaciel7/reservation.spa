@@ -9,12 +9,24 @@ interface IDataGrid {
   rows: any[];
 }
 
-function ActionButtons({ id }: { id: number }) {
+function ActionButtons({
+  id,
+  urlEdit,
+  urlRemove,
+}: {
+  id: number;
+  urlEdit: string;
+  urlRemove: string;
+}) {
   return (
-    <td className="action-buttons">
-      <Button data-id={id}>Adicionar</Button>
-      <Button data-id={id}>Remover</Button>
-    </td>
+    <div className="action-buttons flex-wrap gap-3">
+      <Button data-id={id} href={urlEdit}>
+        Editar
+      </Button>
+      <Button data-id={id} href={urlRemove}>
+        Remover
+      </Button>
+    </div>
   );
 }
 

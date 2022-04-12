@@ -2,59 +2,85 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from "react";
 import { Column } from "react-table";
-import { Container } from "react-bootstrap";
+import { Button, Container, Dropdown, Form, Stack } from "react-bootstrap";
 import DataGrid from "../../../shared/components/dataGrid";
+import useLaboratoryDataGrid from "../hooks/useLaboratoryDataGrid";
+
+type IRow = {
+  col1: string;
+  col2: string;
+};
 
 function LaboratoryDataGridPage() {
-  type IRow = {
-    col1: string;
-    col2: string;
-  };
-
-  const data = React.useMemo(
-    () => [
-      {
-        col1: "Hello",
-        col2: "World",
-      },
-      {
-        col1: "react-table",
-        col2: "rocks",
-      },
-      {
-        col1: "whatever",
-        col2: "you want",
-      },
-    ],
-    []
-  );
-
+  const dataGrid = useLaboratoryDataGrid();
   const columns: Column[] = React.useMemo(
     () => [
       {
-        Header: "Column 1",
-        accessor: "col1",
-        maxWidth: 70,
-        minWidth: 50,
-        width: 60,
+        Header: "Nome",
+        accessor: "name",
+        maxWidth: 0,
       },
       {
-        Header: "Column 2",
-        accessor: "col2",
-        maxWidth: 10,
-        width: 10,
-        Cell: ({ value }: any) => {
-          console.log(value);
-          return <DataGrid.ActionButtons id={value} />;
-        },
+        Header: "Localização",
+        accessor: "location",
+        maxWidth: 0,
+      },
+      {
+        Header: "",
+        accessor: "action",
+        minWidth: 86,
+        maxWidth: 100,
+        Cell: ({ value }: any) => (
+          <DataGrid.ActionButtons
+            id={value}
+            urlEdit={`/laboratories/edit/${value}`}
+            urlRemove={`/laboratories/remove/${value}`}
+          />
+        ),
       },
     ],
     []
   );
 
+  if (dataGrid.findAllRequest.isError || dataGrid.findAllByIdleRequest.isError)
+    return <div>Error</div>;
+  if (
+    dataGrid.findAllRequest.isLoading ||
+    dataGrid.findAllByIdleRequest.isLoading
+  )
+    return <>Carregando</>;
   return (
-    <Container>
-      <DataGrid rows={data} columns={columns} />
+    <Container className="pt-5">
+      <h1>Laboratórios</h1>
+      <br />
+      <div>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            dataGrid.form.handleSubmit(e);
+          }}
+        >
+          <Form.Group className="mb-3" controlId="filter">
+            <Form.Label>Filtro</Form.Label>
+            <Stack direction="horizontal" className="justify-content-between">
+              <Form.Select
+                className="w-50"
+                name="filter"
+                onChange={dataGrid.form.handleChange}
+                value={dataGrid.form.values.filter}
+              >
+                <option value={1} defaultChecked>
+                  Sem Filtro
+                </option>
+                <option value={2}>Ocioso</option>
+              </Form.Select>
+              <Button type="submit">Filtrar</Button>
+            </Stack>
+          </Form.Group>
+          <br />
+        </Form>
+      </div>
+      <DataGrid rows={dataGrid.rows} columns={columns} />
     </Container>
   );
 }

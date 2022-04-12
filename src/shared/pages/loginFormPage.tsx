@@ -14,35 +14,37 @@ function LoginFormPage() {
     <Layout>
       <Layout.NavBar />
       <Layout.Main>
-        <Form
-          className="login-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            form.handleSubmit(e);
-          }}
-        >
-          <ErrorFormAlert error={loginRequest.error} />
-          <Form.Group className="mb-3" controlId="loginForm.usernameInput">
-            <Form.Label>Usuário</Form.Label>
-            <Form.Control
-              name="username"
-              onChange={form.handleChange}
-              value={form.values.username}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="loginForm.passwordInput">
-            <Form.Label>Senha</Form.Label>
-            <Form.Control
-              name="password"
-              onChange={form.handleChange}
-              value={form.values.password}
-              type="password"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Logar
-          </Button>
-        </Form>
+        <div className="login">
+          <Form
+            className="login-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              form.handleSubmit(e);
+            }}
+          >
+            <ErrorFormAlert error={loginRequest.error} />
+            <Form.Group className="mb-3" controlId="loginForm.usernameInput">
+              <Form.Label>Usuário</Form.Label>
+              <Form.Control
+                name="username"
+                onChange={form.handleChange}
+                value={form.values.username}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="loginForm.passwordInput">
+              <Form.Label>Senha</Form.Label>
+              <Form.Control
+                name="password"
+                onChange={form.handleChange}
+                value={form.values.password}
+                type="password"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Logar
+            </Button>
+          </Form>
+        </div>
       </Layout.Main>
     </Layout>
   );
