@@ -1,4 +1,5 @@
 import React from "react";
+import Layout from "../../shared/components/layout";
 import RequireAuth from "../../shared/components/requireAuth";
 
 function RequesterApp() {

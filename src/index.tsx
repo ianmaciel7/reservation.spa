@@ -3,10 +3,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import AuthProvider from "./shared/provider/authProvider";
-
-import RequesterApp from "./apps/requesterApp/RequesterApp";
-import ManagementApp from "./apps/managementApp/ManagementApp";
 
 ReactDOM.render(
   <React.StrictMode>

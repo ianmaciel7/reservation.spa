@@ -1,5 +1,8 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
+// eslint-disable-next-line import/no-unresolved
+import "normalize.css";
+import "./App.scss";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -11,21 +14,23 @@ import AuthProvider from "./shared/provider/authProvider";
 function App() {
   const queryClient = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LoginFormPage />} />
-          </Routes>
-        </BrowserRouter>
-        <BrowserRouter basename="management">
-          <ManagementApp />
-        </BrowserRouter>
-        <BrowserRouter basename="requester">
-          <RequesterApp />
-        </BrowserRouter>
-      </AuthProvider>
-    </QueryClientProvider>
+    <div className="app">
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<LoginFormPage />} />
+            </Routes>
+          </BrowserRouter>
+          <BrowserRouter basename="management">
+            <ManagementApp />
+          </BrowserRouter>
+          <BrowserRouter basename="requester">
+            <RequesterApp />
+          </BrowserRouter>
+        </AuthProvider>
+      </QueryClientProvider>
+    </div>
   );
 }
 

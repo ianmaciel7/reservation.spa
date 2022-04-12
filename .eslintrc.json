@@ -33,7 +33,10 @@
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "react/jsx-filename-extension": [
+      "warn",
+      { "extensions": [".tsx", ".scss"] }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
