@@ -30,6 +30,16 @@ function ActionButtons({
   );
 }
 
+function AddButton({ urlAdd }: { urlAdd: string }) {
+  return (
+    <div className="border border-bottom-0 add-button p-2 d-flex justify-content-end">
+      <Button href={urlAdd} size="lg">
+        +
+      </Button>
+    </div>
+  );
+}
+
 const generateStyle = (cell: any) => {
   const style: any = {};
   if (cell.column?.maxWidth !== 0) style.maxWidth = cell.column?.maxWidth;
@@ -89,4 +99,5 @@ function DataGrid({ columns, rows }: IDataGrid) {
 }
 
 DataGrid.ActionButtons = ActionButtons;
+DataGrid.AddButton = AddButton;
 export default DataGrid;

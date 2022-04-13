@@ -1,6 +1,6 @@
 import React from "react";
 import useApi from "../../../shared/hooks/useApi";
-import { IPagination } from "./useLaboratoryDataGrid";
+import { ILaboratory, IPagination } from "./useLaboratoryDataGrid";
 
 const useLaboratoryService = () => {
   const api = useApi();
@@ -12,6 +12,9 @@ const useLaboratoryService = () => {
     },
     async findAllByIdle(pag: IPagination) {
       return (await api.get(`${path}/list/idle`, { params: pag })).data;
+    },
+    async add(lab: ILaboratory) {
+      return (await api.post(`${path}/add`, lab)).data;
     },
   };
 

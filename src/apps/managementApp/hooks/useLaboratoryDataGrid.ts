@@ -26,7 +26,7 @@ export interface IPagination {
 }
 
 const useLaboratoryDataGrid = () => {
-  const pagination: IPagination = { pageNumber: 0, pageSize: 10 };
+  const pagination: IPagination = { pageNumber: 0, pageSize: 8 };
   const [rows, setRows] = useState<ILaboratoryForDataGrid[]>([]);
   const { findAllByIdleRequest, findAllRequest, form } =
     useLaboratoryFormFilter();

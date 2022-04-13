@@ -5,6 +5,7 @@ import { Column } from "react-table";
 import { Button, Container, Dropdown, Form, Stack } from "react-bootstrap";
 import DataGrid from "../../../shared/components/dataGrid";
 import useLaboratoryDataGrid from "../hooks/useLaboratoryDataGrid";
+import ErrorFormAlert from "../../../shared/components/errorFormAlert";
 
 type IRow = {
   col1: string;
@@ -33,8 +34,8 @@ function LaboratoryDataGridPage() {
         Cell: ({ value }: any) => (
           <DataGrid.ActionButtons
             id={value}
-            urlEdit={`/laboratories/edit/${value}`}
-            urlRemove={`/laboratories/remove/${value}`}
+            urlEdit={`edit/${value}`}
+            urlRemove={`remove/${value}`}
           />
         ),
       },
@@ -50,7 +51,7 @@ function LaboratoryDataGridPage() {
   )
     return <>Carregando</>;
   return (
-    <Container className="pt-5">
+    <Container className="py-5">
       <h1>Laboratórios</h1>
       <br />
       <div>
@@ -80,7 +81,11 @@ function LaboratoryDataGridPage() {
           <br />
         </Form>
       </div>
-      <DataGrid rows={dataGrid.rows} columns={columns} />
+
+      <div>
+        <DataGrid.AddButton urlAdd="laboratories/add" />
+        <DataGrid rows={dataGrid.rows} columns={columns} />
+      </div>
     </Container>
   );
 }
