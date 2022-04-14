@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useEffect, useMemo, useState } from "react";
 import { useMutation } from "react-query";
-import useAuthService from "../../../shared/hooks/useAuthService";
+import useAuthService from "../../loginApp/hooks/useAuthService";
 import { IUser } from "../../../shared/provider/authProvider";
 import {
   ILaboratory,

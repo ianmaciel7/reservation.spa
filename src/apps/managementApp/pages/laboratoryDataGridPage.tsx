@@ -14,6 +14,7 @@ type IRow = {
 
 function LaboratoryDataGridPage() {
   const dataGrid = useLaboratoryDataGrid();
+  console.log(dataGrid);
   const columns: Column[] = React.useMemo(
     () => [
       {
@@ -34,8 +35,8 @@ function LaboratoryDataGridPage() {
         Cell: ({ value }: any) => (
           <DataGrid.ActionButtons
             id={value}
-            urlEdit={`edit/${value}`}
-            urlRemove={`remove/${value}`}
+            urlEdit={`laboratories/edit/${value}`}
+            urlRemove={`laboratories/remove/${value}`}
           />
         ),
       },

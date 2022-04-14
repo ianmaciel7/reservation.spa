@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import ErrorFormAlert from "../components/errorFormAlert";
-import useLoginForm, { Error } from "../hooks/useLoginForm";
-import Layout from "../components/layout/index";
+import ErrorFormAlert from "../../../shared/components/errorFormAlert";
+import Layout from "../../../shared/components/layout";
+import useLoginForm from "../hooks/useLoginForm";
 import "./loginFormPage.scss";
 
 function LoginFormPage() {

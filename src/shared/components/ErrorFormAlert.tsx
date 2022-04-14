@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
-import { Error } from "../hooks/useLoginForm";
+import { Error } from "../../apps/loginApp/hooks/useLoginForm";
 import isEmpty from "../util/isEmpty.util";
 
 interface IErrorFormAlert {

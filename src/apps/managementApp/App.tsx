@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../../shared/components/layout";
 import RequireAuth from "../../shared/components/requireAuth";
 import HomePage from "./pages/homePage";
@@ -10,18 +10,21 @@ import LaboratoryAddFormPage from "./pages/laboratoryAddFormPage";
 
 function ManagementApp() {
   return (
-    <RequireAuth>
-      <RequesterLayout>
+    <RequesterLayout>
+      <RequireAuth>
         <Routes>
-          <Route path="laboratories/">
-            <Route index element={<LaboratoryDataGridPage />} />
-            <Route path="add" element={<LaboratoryAddFormPage />} />
-            <Route path="edit/:labId" element={<LaboratoryEditFormPage />} />
-            <Route path="remove" element={<div />} />
+          <Route path="/management">
+            <Route index element={<div>Home</div>} />
+            <Route path="laboratories/">
+              <Route index element={<LaboratoryDataGridPage />} />
+              <Route path="add" element={<LaboratoryAddFormPage />} />
+              <Route path="edit/:id" element={<LaboratoryEditFormPage />} />
+              <Route path="remove" element={<div />} />
+            </Route>
           </Route>
         </Routes>
-      </RequesterLayout>
-    </RequireAuth>
+      </RequireAuth>
+    </RequesterLayout>
   );
 }
 

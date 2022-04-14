@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useFormik } from "formik";
 import { useMutation } from "react-query";
-import { Error } from "../../../shared/hooks/useLoginForm";
+import { Error } from "../../loginApp/hooks/useLoginForm";
 import { ILaboratory } from "./useLaboratoryDataGrid";
 import useLaboratoryService from "./useLaboratoryService";
 

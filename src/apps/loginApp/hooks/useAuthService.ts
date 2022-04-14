@@ -1,5 +1,5 @@
 import React from "react";
-import useApi from "./useApi";
+import useApi from "../../../shared/hooks/useApi";
 
 export interface ILogin {
   username: string;
@@ -12,7 +12,7 @@ const useAuthService = () => {
 
   const endpoints = {
     async login({ username, password }: ILogin) {
-      return (await api.post(`${path}/login`, { username, password })).data;
+      return api.post(`${path}/login`, { username, password });
     },
   };
 

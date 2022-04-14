@@ -6,10 +6,10 @@ import "./App.scss";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import LoginFormPage from "./shared/pages/loginFormPage";
-import RequesterApp from "./apps/requesterApp/RequesterApp";
-import ManagementApp from "./apps/managementApp/ManagementApp";
+import RequesterApp from "./apps/requesterApp/App";
+import ManagementApp from "./apps/managementApp/App";
 import AuthProvider from "./shared/provider/authProvider";
+import LoginApp from "./apps/loginApp/App";
 
 function App() {
   const queryClient = new QueryClient();
@@ -18,14 +18,8 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<LoginFormPage />} />
-            </Routes>
-          </BrowserRouter>
-          <BrowserRouter basename="management">
+            <LoginApp />
             <ManagementApp />
-          </BrowserRouter>
-          <BrowserRouter basename="requester">
             <RequesterApp />
           </BrowserRouter>
         </AuthProvider>

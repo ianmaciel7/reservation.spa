@@ -1,5 +1,10 @@
 /* eslint-disable arrow-body-style */
-import axios, { AxiosError } from "axios";
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from "axios";
 import { IUser } from "../provider/authProvider";
 import useLocalStorage from "./useLocalStorage";
 
@@ -16,24 +21,51 @@ const useApi = () => {
   api.interceptors.request.use(
     async (request) => {
       const token = auth?.hash;
-      request.headers = {
-        Authorization: `${authType} ${token}`,
-      };
+
+      if (token !== null && token !== undefined) {
+        console.log(token);
+        request.headers = {
+          Authorization: `${authType} ${token}`,
+        };
+      }
+
       return Promise.resolve(request);
     },
     (error) => Promise.reject(error)
   );
 
-  api.interceptors.response.use(
-    async (request) => {
-      return Promise.resolve(request);
-    },
-    (error) => {
-      return Promise.reject(error.response.data);
-    }
-  );
+  const captureResponseData = (config: AxiosRequestConfig): Promise<any> => {
+    return api
+      .request(config)
+      .then((e) => Promise.resolve(e.data))
+      .catch((e) => Promise.reject(e.response.data));
+  };
 
-  return api;
+  const wrapperAxios = {
+    async post(url: string, data?: any) {
+      return captureResponseData({
+        url,
+        method: "POST",
+        data,
+      } as AxiosRequestConfig);
+    },
+    async get(url: string, params?: any) {
+      return captureResponseData({
+        url,
+        method: "GET",
+        params,
+      } as AxiosRequestConfig);
+    },
+    async patch(url: string, data?: any) {
+      return captureResponseData({
+        url,
+        method: "PATCH",
+        data,
+      } as AxiosRequestConfig);
+    },
+  };
+
+  return wrapperAxios;
 };
 
 export default useApi;

@@ -20,7 +20,7 @@ function NavbarPresentation({ children }: IChildren) {
   return (
     <Navbar className="layout-navbar" bg="primary" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="#home">Reserva-APP</Navbar.Brand>
+        <Navbar.Brand href="/">Reserva-APP</Navbar.Brand>
         <Nav className="me-auto">{children}</Nav>
       </Container>
     </Navbar>

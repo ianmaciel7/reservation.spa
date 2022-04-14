@@ -5,7 +5,7 @@ import "./jumbotron.scss";
 
 type Variant = "success" | "danger";
 
-interface Jumbotron
+export interface IJumbotron
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
   title: string;
   textBody: string;
@@ -22,7 +22,7 @@ function Jumbotron({
   buttonHref,
   buttonText,
   ...props
-}: Jumbotron) {
+}: IJumbotron) {
   const [variantClassName, setVariantClassName] = useState<string>();
   useMemo(() => {
     switch (variant) {
